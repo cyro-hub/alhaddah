@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/income/income.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <title>Document</title>
+</head>
+
+<body class="p-3 mb-2">
+    <h1>ADD ITEM</h1>
+    <!-- this is a bootstrap form -->
+    <form action="/api/incomebalance" method="POST">
+        {{#if message}}
+        <div class="alert alert-{{alert}}" role="alert">{{message}}</div>
+        {{/if}}
+        <div class="form-group">
+            <label for="item">ITEM NAME</label>
+            <input type="text" class="form-control" id="item" name="item" required />
+        </div>
+        <div class="form-group">
+            <label for="unit">UNIT</label>
+            <input type="text" class="form-control" id="unit" name="unit" required />
+        </div>
+        <div class="form-group">
+            <label for="price">PRICE</label>
+            <input type="number" min="0" step="0.01" class="form-control" id="price" name="price" required />
+        </div>
+        <div class="form-group">
+            <label for="type">TYPE</label>
+            <select class="form-control" id="type" name="type" required>
+                <option>Fertilizer</option>
+                <option>Medicine</option>
+                <option>Others</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="company">COMPANY</label>
+            <input type="text" class="form-control" id="company" name="company" required />
+        </div>
+        <div class="form-group">
+            <label for="description">Description About the item(E.g Chemical conposition)</label>
+            <textarea class="form-control" id="description" rows="3" name="description" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <script>
+        document.getElementById("amount").disabled = true;
+    </script>
+</body>
+
+</html>

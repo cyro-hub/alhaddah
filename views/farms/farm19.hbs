@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/income/preview.css">
+    <title>Document</title>
+</head>
+
+<body class="p-3 mb-2">
+    <table class="table table-hover table-sm">
+        <h1>Farm 19 Preview</h1>
+        {{#if message}}
+        <div class="alert alert-{{alert}}" role="alert">{{message}}</div>
+        {{/if}}
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Date</th>
+                <th scope="col">Item</th>
+                <th scope="col">Type</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Unit</th>
+
+                <th scope="col">Expenditure</th>
+                <th scope="col">Use</th>
+            </tr>
+        </thead>
+        <tbody id="farm19">
+            {{!-- <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr> --}}
+        </tbody>
+    </table>
+    <script src="./js/farms/farm19.js">
+
+    </script>
+</body>
+
+</html>

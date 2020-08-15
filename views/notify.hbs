@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
+    <style>
+        canvas {
+            background: white;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body class="p-3 mb-2 bg-dark text-white">
+    <canvas id="myChart" width="300px" height="100px"></canvas>
+    <script>
+        fetch("/api/incomeincome").then(res => res.json()).then(data => {
+            let label = [];
+            let amount = [];
+            let color = [];
+            for (let i = 0; i < data.length; i++) {
+                label[i] = data[i].item;
+                amount[i] = data[i].amount;
+                if (amount[i] <= 5) {
+                    color[i] = "rgb(255, 0, 0)"
+                } else {
+                    color[i] = "rgb(3, 99, 0)"
+                }
+            }
+            var ctx = document.getElementById("myChart");
+            var myChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: label,
+                    datasets: [
+                        {
+                            //label: "Fertilizer",
+                            data: amount,
+                            backgroundColor: color,
+                        },
+                    ],
+                },
+            });
+        })
+
+    </script>
+</body>

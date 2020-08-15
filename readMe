@@ -1,0 +1,6 @@
+-insert the if statement to handle all errors from the backend during insertion of a user
+-----check the register insert statement---done
+-----check the insertionof data into the outcome database--done
+-----check the delete button to send the right request to the backend---done
+-----check the delete option for the outcome route-----done
+-----check the update route

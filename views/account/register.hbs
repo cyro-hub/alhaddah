@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/account/register.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <title>Document</title>
+</head>
+
+<body class="p-3 mb-2">
+    <header id="header" class="fixed-top">
+        <div class="container">
+            <div class="logo float-left">
+                <h1 class="text-light"><a href="/home"><span>Register</span></a></h1>
+            </div>
+
+            <nav class="nav-menu float-right d-none d-lg-block">
+                <ul>
+                    <li class="active"><a href="/home">Home</a></li>
+                    <li class="drop-down"><a href="#">Activities</a>
+                        <ul>
+                            <li><a href="/admin">Admin Dashboard</a></li>
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Notification</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <form action="/api/userregister" method="POST">
+        {{#if message}}
+        <div class="alert alert-{{alert}}" role="alert">{{message}}</div>
+        {{/if}}
+        <div class="form-group">
+            <label for="userName">User name</label>
+            <input type="text" class="form-control" id="name" name="userName" required />
+            <p class="alert alert-danger" id="error-username">Please enter user name correctly 6 to 8 letters</p>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required />
+            <p class="alert alert-danger" id="error-password">Please enter a valid password</p>
+        </div>
+        <div class="form-group">
+            <label for="passwordC">Confirm Password</label>
+            <input type="password" class="form-control" id="passwordC" name="passwordC" required />
+            <p class="alert alert-danger" id="error-passwordc">Password confirm does not match password </p>
+        </div>
+        <div class="form-group">
+            <label for="sector">Sector</label>
+            <select name="sector" class="form-control" id="sector">
+                <option value="Administrator">Administrator</option>
+                <option value="Secretary">Secretary</option>
+                <option value="Others">Others</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+
+    <script src="./js/register.js"></script>
+    <script src="css/home/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="css/home/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="css/home/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="css/home/assets/vendor/php-email-form/validate.js"></script>
+    <script src="css/home/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="css/home/assets/vendor/venobox/venobox.min.js"></script>
+    <script src="css/home/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+</body>
+
+</html>
