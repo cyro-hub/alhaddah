@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: cursive;
+  font-size: 14px;
+  overflow-x: hidden;
+}
+.display {
+  width: 100%;
+  background: rgba(44, 58, 78, 0.815);
+  margin-top: 5vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+canvas,
+table,
+.export {
+  background-color: white;
+  border-radius: 5px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 35px;
+}
+#quantity,
+#expenditure,
+#balance {
+  width: 1000px !important;
+  height: 450px !important;
+}
+
+table,
+.export {
+  width: 1000px !important;
+}
+.export {
+  background-color: transparent;
+}
+td {
+  justify-content: center;
+  align-items: center;
+  word-wrap: break-word;
+}

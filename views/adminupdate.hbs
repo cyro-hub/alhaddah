@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/home/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/home/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="css/home/assets/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="css/home/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="css/home/assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/adminupdate.css">
+    <title>Document</title>
+</head>
+
+<body>
+    {{!-- outcome modal --}}
+    <div class="modal" tabindex="-1" id="outcome">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Outcome</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/api/incomeoutcome" method="POST">
+                        <div class="form-group">
+                            <label for="item">ITEM</label>
+                            <select class="form-control" id="item" name="item" required>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">AMOUNT</label>
+                            <input type="number" min="0" step="0.01" class="form-control" id="amount" name="amount"
+                                required />
+                        </div>
+                        <div class="form-group">
+                            <label for="date">DATE</label>
+                            <input type="date" class="form-control" id="date" name="date" required />
+                        </div>
+                        <div class="form-group"
+                            title="Select multiple farms by holding the Ctrl button and clicking the farm">
+                            <label for="farm">FARM'S</label>
+                            <select multiple class="form-control" id="farm" name="farm" required>
+                                <option>Farm12</option>
+                                <option>Farm13</option>
+                                <option>Farm14</option>
+                                <option>Farm15</option>
+                                <option>Farm16</option>
+                                <option>Farm17</option>
+                                <option>Farm18</option>
+                                <option>Farm19</option>
+                                <option>AbdallahFarm</option>
+                                <option>FesalFarm</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="uses">Use of the item(E.g Insecticide,fungicide)</label>
+                            <textarea id="uses" rows="2" name="uses" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{!-- end of outcome modal --}}
+    {{!-- income modal --}}
+    <div class="modal" tabindex="-1" id="income">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Income</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/api/incomebalance" method="POST">
+                        <div class="form-group">
+                            <label for="item">ITEM NAME</label>
+                            <input type="text" class="form-control" id="item" name="item" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="unit">UNIT</label>
+                            <input type="text" class="form-control" id="unit" name="unit" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="price">PRICE</label>
+                            <input type="number" min="0" step="0.01" class="form-control" id="price" name="price"
+                                required />
+                        </div>
+                        <div class="form-group">
+                            <label for="type">TYPE</label>
+                            <select class="form-control" id="type" name="type" required>
+                                <option>Fertilizer</option>
+                                <option>Medicine</option>
+                                <option>Others</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">COMPANY</label>
+                            <input type="text" class="form-control" id="company" name="company" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description About the item(E.g Chemical conposition)</label>
+                            <textarea class="form-control" id="description" rows="3" name="description"
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{!-- end of income modal --}}
+    {{!-- add item modal --}}
+    <div class="modal" tabindex="-1" id="addItem">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/api/incomeaddincome" method="POST">
+                        <div class="form-group">
+                            <label for="date">DATE</label>
+                            <input type="date" class="form-control" id="date" name="date" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="type">ITEM</label>
+                            <select class="form-control" id="add" name="item" required>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">AMOUNT</label>
+                            <input type="number" min="0" step="0.01" class="form-control" id="amount" name="amount"
+                                required />
+                        </div>
+                        <div class="form-group">
+                            <label for="free">FREE</label>
+                            <input type="number" min="0" step="0.01" class="form-control" id="free" name="free"
+                                required />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{!-- end of add item modal --}}
+    {{!-- success modal --}}
+    {{#if success}}
+    <div class="modal" tabindex="-1" id="Success">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <i class="fa fa-check" id="success"></i>
+                <div class="modal-body">
+                    <p>{{success}}</p>
+                    <p>Click anywhere to close</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a data-toggle="modal" data-target="#Success" id="open"></a>
+    {{/if}}
+    {{#if warning}}
+    <div class="modal" tabindex="-1" id="Warning">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <i class="fa fa-exclamation" id="warning"></i>
+                <div class="modal-body">
+                    <p>{{warning}}</p>
+                    <p>Click anywhere to close</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a data-toggle="modal" data-target="#Warning" id="open"></a>
+    {{/if}}
+    {{!-- end of success modal --}}
+    <header id="header" class="fixed-top">
+        <div class="container">
+            <div class="logo float-left">
+                <h1 class="text-light"><a href="/home"><span>Admin</span></a></h1>
+            </div>
+
+            <nav class="nav-menu float-right d-none d-lg-block">
+                <ul>
+                    <li class="active"><a href="/home">Home</a></li>
+                    <li class="drop-down"><a href="">Activities</a>
+                        <ul>
+                            <li><a href="/admin">Admin Dashboard</a></li>
+                            <li><a href="/dashboard">Dashboard</a></li>
+                            {{!-- <li><a href="/notify">Notification</a></li> --}}
+                        </ul>
+                    </li>
+                    <li class="drop-down"><a href="">Services</a>
+                        <ul>
+                            <li><a data-toggle="modal" data-target="#income">Income</a></li>
+                            <li><a href="/balance" target="display">Income Balance</a></li>
+                            <li><a href="/preview" target="display">Income Preview</a></li>
+                            <li><a data-toggle="modal" data-target="#addItem">Add item</a></li>
+                            <li><a data-toggle="modal" data-target="#outcome">Outcome</a></li>
+                        </ul>
+                    </li>
+                    <li class="drop-down"><a href="">Farms</a>
+                        <ul id="farm">
+                            <li><a href="/farm12" target="display" id="Farm12">Farm 12</a></li>
+                            <li><a href="/farm13" target="display" id="Farm13">Farm 13</a></li>
+                            <li><a href="/farm14" target="display" id="Farm14">Farm 14</a></li>
+                            <li><a href="/farm15" target="display" id="Farm15">Farm 15</a></li>
+                            <li><a href="/farm16" target="display" id="Farm16">Farm 16</a></li>
+                            <li><a href="/farm17" target="display" id="Farm17">Farm 17</a></li>
+                            <li><a href="/farm18" target="display" id="Farm18">Farm 18</a></li>
+                            <li><a href="/farm19" target="display" id="Farm19">Farm 19</a></li>
+                            <li><a href="/farmabdallah" target="display" id="AbdallahFarm">Abdallah</a></li>
+                            <li><a href="/farmfesal" target="display" id="FesalFarm">Fesal</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </nav>
+            <!-- .nav-menu -->
+        </div>
+    </header>
+
+    <iframe src="/notify" frameborder="0" name="display" id="display"></iframe>
+    <script src="js/outcome.js"></script>
+</body>
+
+</html>

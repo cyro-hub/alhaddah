@@ -7,7 +7,7 @@ name_error.style.display = "none";
 password_error.style.display = "none";
 passwordC_error.style.display = "none";
 
-const nameTester = /^[\w]{6,8}$/;
+const nameTester = /^[\w]{6,10}$/;
 const passTester = /^[\S\d]{8,}$/;
 
 input >

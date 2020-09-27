@@ -5,45 +5,88 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
+    <!-- Vendor CSS Files -->
+    <link href="css/home/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/home/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="css/home/assets/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="css/home/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="css/home/assets/css/style.css" rel="stylesheet">
     <style>
+        body {
+            font-family: cursive;
+        }
+
+        h1 {
+            font-weight: bold;
+            color: ;
+        }
+
         canvas {
-            background: white;
+            background-color: rgba(0, 0, 0, 0.6);
+            width: 1250px !important;
+            height: 500px !important;
         }
     </style>
     <title>Document</title>
 </head>
 
 <body class="p-3 mb-2 bg-dark text-white">
-    <canvas id="myChart" width="300px" height="100px"></canvas>
+    <canvas id="myChart"></canvas>
     <script>
-        fetch("/api/incomeincome").then(res => res.json()).then(data => {
-            let label = [];
-            let amount = [];
-            let color = [];
-            for (let i = 0; i < data.length; i++) {
-                label[i] = data[i].item;
-                amount[i] = data[i].amount;
-                if (amount[i] <= 5) {
-                    color[i] = "rgb(255, 0, 0)"
-                } else {
-                    color[i] = "rgb(3, 99, 0)"
+        fetch("/api/incomebalance")
+            .then((res) => res.json())
+            .then((data) => {
+                var balanceItem = [];
+                var items = [];
+                var color = [];
+                for (let i = 0; i < data.length; i++) {
+                    balanceItem[i] = data[i].amount;
+                    items[i] = data[i].item;
+                    if (data[i].amount < 5) {
+                        color[i] = "rgba(112, 17, 0, 0.815)"
+                    } else {
+                        color[i] = "white"
+                    }
                 }
-            }
-            var ctx = document.getElementById("myChart");
-            var myChart = new Chart(ctx, {
-                type: "bar",
-                data: {
-                    labels: label,
-                    datasets: [
-                        {
-                            //label: "Fertilizer",
-                            data: amount,
-                            backgroundColor: color,
-                        },
-                    ],
-                },
-            });
-        })
 
+                var ctx = document.getElementById("myChart");
+                var myChart = new Chart(ctx, {
+                    type: "bar",
+                    data: {
+                        labels: items,
+                        datasets: [
+                            {
+                                label: `Item balance chart sheet`,
+                                data: balanceItem,
+                                backgroundColor: color,
+                                barThickness: 40,
+                            },
+                        ],
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [
+                                {
+                                    ticks: {
+                                        beginAtZero: true,
+                                    },
+                                },
+                            ],
+                        },
+                        legend: {
+                            display: true,
+                            labels: {
+                                fontColor: "white",
+                                fontSize: 18,
+                                // fontFamily: "cursive",
+                            },
+                        },
+                    },
+                });
+
+
+            });
     </script>
 </body>

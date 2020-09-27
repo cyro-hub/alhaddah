@@ -2,5 +2,9 @@
 -----check the register insert statement---done
 -----check the insertionof data into the outcome database--done
 -----check the delete button to send the right request to the backend---done
------check the delete option for the outcome route-----done
------check the update route
+-----check the delete option to render the right pages after delete method----done
+-----check the update route----done
+-----check the balance js file for edit and delete -----done
+-----check the preview update to handle errors-----done
+-----working on the export of farm expenditure----done
+-----work on export type file from frontend selection

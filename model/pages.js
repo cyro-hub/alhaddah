@@ -1,5 +1,8 @@
 const express = require("express");
 const pages = express.Router();
+
+pages.use(express.static("public"));
+
 const auth = require("../config/auth");
 const cookieParser = require("cookie-parser");
 pages.use(cookieParser());
@@ -8,28 +11,24 @@ pages.get("/home", (req, res) => {
   res.render("home");
 });
 
-pages.get("/admin", auth.admin, (req, res) => {
-  res.render("admin");
+pages.get("/admin", (req, res) => {
+  res.render("adminupdate");
 });
 
-pages.get("/income", auth.admin, (req, res) => {
-  res.render("income/income");
+pages.get("/dashboard", (req, res) => {
+  res.render("dashboard");
 });
 
-pages.get("/balance", auth.admin, (req, res) => {
+pages.get("/balance", (req, res) => {
   res.render("income/balance");
 });
 
-pages.get("/preview", auth.admin, (req, res) => {
+pages.get("/preview", (req, res) => {
   res.render("income/preview");
 });
 
-pages.get("/notify", auth.secretary, (req, res) => {
+pages.get("/notify", (req, res) => {
   res.render("notify");
-});
-
-pages.get("/addincome", auth.admin, (req, res) => {
-  res.render("income/add-income");
 });
 
 pages.get("/register", (req, res) => {
@@ -38,10 +37,6 @@ pages.get("/register", (req, res) => {
 
 pages.get("/login", (req, res) => {
   res.render("account/login");
-});
-
-pages.get("/out", (req, res) => {
-  res.render("outcome/out");
 });
 
 pages.get("/farm:farmNumber", (req, res) => {
@@ -67,9 +62,5 @@ pages.get("/farm:farmNumber", (req, res) => {
   } else if (farm == "fesal") {
     res.render("farms/fesal");
   }
-});
-
-pages.get("/updatebalance", (req, res) => {
-  res.render("income/balanceupdate");
 });
 module.exports = pages;

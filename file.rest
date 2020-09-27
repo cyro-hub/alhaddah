@@ -1,0 +1,27 @@
+DELETE  http://localhost:3000/api/delpreview-4 HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "john.doe@contosoe.com",
+    "firstname": "John",
+    "lastname": "Doe",
+    "request": "some data"
+}
+###
+POST  http://localhost:3000/api/incomebalance HTTP/1.1
+Content-Type: application/json
+Cache-Control: no-cache
+Accept: application/json
+
+{
+     "item": "sulphur",
+      "unit": "25kg",
+      "price": "4.5",
+      "product": "fertiliser",
+      "company": "alwaha",
+      "des": "primary fertiliser",
+}
+
+####
+GET  http://localhost:3000/login HTTP/1.1
+Content-Type: application/json

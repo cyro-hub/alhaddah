@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>dashboard</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Vendor CSS Files -->
+  <link href="css/home/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/home/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="css/home/assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="css/home/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="css/home/assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+  <header id="header" class="fixed-top">
+    <div class="container">
+
+      <div class="logo float-left">
+        <h1 class="text-light"><a href="/home"><span>Dashboard</span></a></h1>
+      </div>
+
+      <nav class="nav-menu float-right d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="/home">Home</a></li>
+          <li class="drop-down"><a href="">Activities</a>
+            <ul>
+              <li><a href="/admin">Admin Dashboard</a></li>
+              <li><a href="/dashboard">Dashboard</a></li>
+              {{!-- <li><a href="/notify">Notification</a></li> --}}
+            </ul>
+          </li>
+          <li class="drop-down"><a href="">Account</a>
+            <ul>
+              <li><a href="/register">Register</a></li>
+              <li><a href="/login">Login</a></li>
+              <li><a href="api/userlogout">Logout</a></li>
+            </ul>
+          </li>
+          <li class="drop-down"><a href="">Farms</a>
+            <ul id="farm">
+              <li><a id="Farm12">Farm 12</a></li>
+              <li><a id="Farm13">Farm 13</a></li>
+              <li><a id="Farm14">Farm 14</a></li>
+              <li><a id="Farm15">Farm 15</a></li>
+              <li><a id="Farm16">Farm 16</a></li>
+              <li><a id="Farm17">Farm 17</a></li>
+              <li><a id="Farm18">Farm 18</a></li>
+              <li><a id="Farm19">Farm 19</a></li>
+              <li><a id="AbdallahFarm">Abdallah</a></li>
+              <li><a id="FesalFarm">Fesal</a></li>
+            </ul>
+          </li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </nav>
+      <!-- .nav-menu -->
+    </div>
+  </header>
+  <section class="display">
+    <canvas id="quantity" width="600px" height="300px"></canvas>
+    <canvas id="balance" width="600px" height="300px"></canvas>
+    <canvas id="expenditure" width="600px" height="300px"></canvas>
+
+    <table id="tableDisplay" class="table table-hover table-sm">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Date</th>
+          <th scope="col">Item</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Unit</th>
+          <th scope="col">issueType</th>
+          <th scope="col">Expenditure</th>
+          <th scope="col">Use</th>
+        </tr>
+      </thead>
+      <tbody id="table">
+        {{!-- <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr> --}}
+      </tbody>
+    </table>
+    <div class="export">
+      <button class="btn btn-primary btn-sm" title="Export content" id="export"><i class="fa fa-download"></i>
+        Export</button>
+    </div>
+  </section>
+
+  <script src="./js/dashboard.js"></script>
+</body>
+
+</html>

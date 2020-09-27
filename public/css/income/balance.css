@@ -12,9 +12,40 @@ td button {
   height: 30px;
   margin: 5px;
 }
-h1 {
+h1,
+h2 {
   font-size: 25px;
   font-weight: bold;
   text-align: center;
   margin: 5px;
+}
+#icon,
+#success,
+#warning,
+#updateSuccess {
+  margin-left: 42%;
+  font-size: 100px;
+}
+#deleteMessage,
+#editMessage {
+  text-align: center;
+  font-size: 18px;
+  font-family: cursive;
+}
+.footer {
+  text-align: center;
+  font-size: 18px;
+  font-family: cursive;
+  margin-bottom: 20px;
+}
+.footer button {
+  width: 100px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+}
+.modal-body {
+  text-align: center;
+  font-size: 18px;
+  font-family: cursive;
 }
