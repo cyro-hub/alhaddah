@@ -1,14 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const pages = require("./pages");
+const auth = require("../config/auth");
 router.use(express.static("public"));
 const con = require("../config/database");
 
-// const auth = require("../config/auth");
-
-router.get("/income:table", (req, res) => {
+router.get("/income:table", auth.secretary, (req, res) => {
   let getId = req.params.table;
-  let [table, id] = getId.split("-");
+  let [table, id, fromDate, toDate] = getId.split(" ");
+  console.log(table, id, fromDate, toDate);
   if (table == "balance") {
     let sql = `SELECT * FROM balance order by item`;
     con.query(sql, (err, result, field) => {
@@ -22,7 +21,7 @@ router.get("/income:table", (req, res) => {
       return res.json(result);
     });
   } else if (table == "outcome") {
-    let sql = `SELECT * FROM outcome where farms = "${id}" order by issueDate`;
+    let sql = `SELECT * FROM outcome where farms = "${id}" and issueDate between "${fromDate}" and "${toDate}" order by issueDate`;
     con.query(sql, (err, result, field) => {
       if (err) return;
       return res.json(result);
@@ -31,7 +30,7 @@ router.get("/income:table", (req, res) => {
   }
 });
 
-router.post("/income:table", (req, res) => {
+router.post("/income:table", auth.admin, (req, res) => {
   if (req.params.table == "balance") {
     let { item, unit, price, type, company, description } = req.body;
     let values = {
@@ -258,7 +257,7 @@ router.post("/income:table", (req, res) => {
   }
 });
 
-router.delete("/del:id", (req, res) => {
+router.delete("/del:id", auth.admin, (req, res) => {
   let deleteId = req.params.id;
   let [table, id] = deleteId.split("-");
   id = parseInt(id);
@@ -329,11 +328,13 @@ router.delete("/del:id", (req, res) => {
       (err, result) => {
         if (err) return;
         selectResult = result[0];
+
         con.query(
           `update balance set amount = amount + ? where item=?`,
           [selectResult.amount, selectResult.item],
           (err, result) => {
             if (err) return;
+
             con.query(
               `DELETE FROM outcome WHERE ?`,
               { outcomeId: id },
@@ -344,13 +345,15 @@ router.delete("/del:id", (req, res) => {
                     [selectResult.amount, selectResult.item],
                     (err, result) => {
                       if (err) return;
+                      return res.json({
+                        warning: "Could Not Delete",
+                      });
                     }
                   );
-                  res.json({
-                    message: "Item deleted successfully ",
-                    alert: "success",
-                  });
                 }
+                return res.json({
+                  success: "Delete Successful ",
+                });
               }
             );
           }
@@ -360,7 +363,7 @@ router.delete("/del:id", (req, res) => {
   }
 });
 
-router.post("/update:id", (req, res) => {
+router.post("/update:id", auth.admin, (req, res) => {
   let deleteId = req.params.id;
   let [table, id] = deleteId.split("-");
   id = parseInt(id);

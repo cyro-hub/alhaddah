@@ -1,5 +1,7 @@
 let table = document.getElementById("farm19");
-fetch("/api/incomeoutcome-Farm19")
+let fromDate = window.parent.document.getElementById("fromDate").value;
+let toDate = window.parent.document.getElementById("toDate").value;
+fetch(`/api/incomeoutcome Farm19 ${fromDate} ${toDate}`)
   .then((res) => res.json())
   .then((data) => {
     for (let i = 0; i < data.length; i++) {
@@ -27,12 +29,44 @@ table.addEventListener("click", (e) => {
   id = eval(id[2]);
 
   if (option == "dele") {
-    if (window.confirm(`Are you sure you want to Delete ${item}`)) {
-      fetch(`/api/deloutcome-${id}`, { method: "DELETE" })
-        .then((res) => res.json())
-        .then((data) => {
-          window.location.href = `/farm19`;
-        });
-    }
+    document.getElementById("deleteMessage").innerHTML = "";
+    let text = document.createTextNode(
+      `Do you want to delete ${item} id ${id}`
+    );
+    document.getElementById("deleteMessage").appendChild(text);
+    document.getElementById("openDelete").click();
   }
 });
+let del = document.getElementById("delete");
+
+del.addEventListener("click", async (e) => {
+  let p = document.getElementById("deleteMessage").innerHTML;
+  p = p.split(" ");
+  let answer = e.target.innerHTML;
+
+  if (answer == "Yes") {
+    await fetch(`/api/deloutcome-${p[p.length - 1]}`, { method: "DELETE" })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          document.getElementById("delete").click();
+          let message = document.createTextNode(data.success);
+          document.getElementById("successMessage").innerHTML = "";
+          document.getElementById("successMessage").appendChild(message);
+          document.getElementById("openSuccess").click();
+          document.getElementById("okSuccess").addEventListener("click", () => {
+            window.location.href = "/farm19";
+          });
+        } else if (data.warning) {
+          document.getElementById("delete").click();
+          let message = document.createTextNode(data.warning);
+          document.getElementById("warningMessage").innerHTML = "";
+          document.getElementById("warningMessage").appendChild(message);
+          document.getElementById("openWarning").click();
+        }
+      });
+  } else if (answer == "No") {
+    document.getElementById("delete").click();
+  }
+});
+document.getElementById("updateOpen").click();

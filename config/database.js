@@ -11,7 +11,7 @@ const con = mysql.createConnection({
 
 con.connect((error) => {
   if (error) {
-    return pages.databaseError;
+    return error.message;
   }
 });
 

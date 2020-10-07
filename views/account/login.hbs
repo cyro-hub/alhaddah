@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-        <!-- Vendor CSS Files -->
-        <link href="css/home/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/home/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-        <link href="css/home/assets/vendor/venobox/venobox.css" rel="stylesheet">
-        <link href="css/home/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link href="css/home/assets/css/style.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="css/home/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/home/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="css/home/assets/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="css/home/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="css/home/assets/css/style.css" rel="stylesheet">
     <title>Document</title>
 </head>
 
@@ -45,9 +45,23 @@
     </header>
 
     <form action="/api/userlogin" method="POST">
-        {{#if message}}
-        <div class="alert alert-{{alert}}" role="alert">{{message}}</div>
+        {{#if success}}
+        <div class="modal" tabindex="-1" id="message">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <i class="fa fa-check text-{{alert}}" id="updateSuccess"></i>
+                    <div class="modal-body">
+                        <p>{{success}}</p>
+                    </div>
+                    <div class="footer">
+                        <button class="btn btn-primary" data-dismiss="modal" aria-label="Close">ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a data-toggle="modal" data-target="#message" id="updateOpen"></a>
         {{/if}}
+
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email" class="form-control" id="email" name="email" required />
@@ -59,7 +73,7 @@
         <button type="submit" class="btn btn-primary">Login</button>
         <a href="/register">Register</a>
     </form>
-
+    <script> document.getElementById("updateOpen").click()</script>
     <script src="./js/register.js"></script>
     <script src="css/home/assets/vendor/jquery/jquery.min.js"></script>
     <script src="css/home/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

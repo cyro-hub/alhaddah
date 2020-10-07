@@ -38,8 +38,17 @@ table,
 .export {
   background-color: transparent;
 }
-td {
-  justify-content: center;
-  align-items: center;
-  word-wrap: break-word;
+td,
+th {
+  text-align: center;
+  width: 142px;
+}
+
+#expenditureId{
+  display: none;
+  width: 500px !important;
+}
+#expenditureId th{
+  text-align: center;
+  width: 166.6px;
 }

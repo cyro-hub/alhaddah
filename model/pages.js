@@ -1,6 +1,5 @@
 const express = require("express");
 const pages = express.Router();
-
 pages.use(express.static("public"));
 
 const auth = require("../config/auth");
@@ -11,23 +10,23 @@ pages.get("/home", (req, res) => {
   res.render("home");
 });
 
-pages.get("/admin", (req, res) => {
+pages.get("/admin",auth.admin, (req, res) => {
   res.render("adminupdate");
 });
 
-pages.get("/dashboard", (req, res) => {
+pages.get("/dashboard",auth.secretary, (req, res) => {
   res.render("dashboard");
 });
 
-pages.get("/balance", (req, res) => {
+pages.get("/balance", auth.admin, (req, res) => {
   res.render("income/balance");
 });
 
-pages.get("/preview", (req, res) => {
+pages.get("/preview", auth.admin, (req, res) => {
   res.render("income/preview");
 });
 
-pages.get("/notify", (req, res) => {
+pages.get("/notify",auth.secretary, (req, res) => {
   res.render("notify");
 });
 
@@ -39,7 +38,7 @@ pages.get("/login", (req, res) => {
   res.render("account/login");
 });
 
-pages.get("/farm:farmNumber", (req, res) => {
+pages.get("/farm:farmNumber",auth.secretary, (req, res) => {
   let farm = req.params.farmNumber;
   if (farm == "12") {
     res.render("farms/farm12");
